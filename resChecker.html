@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>autoOpener</title>
+    
+    <script src="config.js"></script>
+</head>
+<body onload="readKit(kit)">
+
+    <input type="text" value="" id="urlInput" placeholder="Enter url">
+    <button id="submit" onclick="getActiveCheckboxes()">OPEN</button>
+    <div id="checkboxDiv" style="margin-top:20px"></div>
+
+    <!-- Create html component -->
+    <script>
+
+        const getNewComponent = (parent, name, value) => {
+            const newComponent = document.createElement('div')
+
+            if (value)
+            {
+                const checkbox = document.createElement('input')
+                checkbox.type = 'checkbox'
+                checkbox.name = name
+                checkbox.setAttribute('h', value.h)
+                checkbox.setAttribute('w', value.w)
+                newComponent.appendChild(checkbox)
+            }
+
+            const label = document.createElement('label')
+            label.appendChild(document.createTextNode(name))
+            newComponent.appendChild(label)
+
+            return newComponent
+        }
+    </script>
+
+    <!-- Read kit from config.js and build checkboxes -->
+    <script>
+
+        const checkboxDiv = document.getElementById('checkboxDiv')
+
+        const readKit = (kit) => {
+
+            for (key in kit) {
+
+                const childrenKit = kit[key]
+                const keysInNewMapCount = Object.keys(childrenKit).length
+                const hightKeyIsExist = childrenKit.h
+
+                if (keysInNewMapCount > 0) {
+
+                    let newComponent
+
+                    if (hightKeyIsExist !== undefined)
+                    {
+                        // checkbox
+                        newComponent = getNewComponent(checkboxDiv, key, childrenKit)
+                    } else {
+                        // or label
+                        newComponent = getNewComponent(checkboxDiv, key)
+                    }
+
+                    checkboxDiv.appendChild(newComponent)
+
+                    readKit(childrenKit)
+
+                }
+
+            }
+
+        }
+    </script>
+
+    <!-- Open all windows -->
+    <script>
+        const getActiveCheckboxes = () => {
+
+            const activeCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked')
+            const url = document.getElementById('urlInput').value
+
+            for (i = 0; i < activeCheckboxes.length; i++) {
+
+                const checkbox = activeCheckboxes[i]
+                const height = checkbox.getAttribute('h')
+                const width = checkbox.getAttribute('w')
+                const name = checkbox.getAttribute('name')
+
+                console.log(name)
+
+                window.open(
+                    url, 
+                    name, 
+                    `Toolbar=1, 
+                    Copyhistory=1,
+                    Width=${width}, 
+                    Height=${height}`
+                )
+            }
+
+        }
+
+    </script>
+</body>
+</html>

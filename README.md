@@ -9,4 +9,4 @@ This thing will open the same url in different windows with different resolution
 4. Press "OPEN".
 
 The browser window does not need to be full screen to work. Pop-ups must be allowed.
-You can change existing resolutions or add your own ones in the conf.js file.
+You can change existing resolutions or add your own ones in the config.js file.

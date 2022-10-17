@@ -9,16 +9,9 @@
     <script src="config.js"></script>
     <script src="checkboxLogic.js"></script>
 </head>
-<body>
+<body onload="readKit(kit, document.getElementById('checkboxDiv'))"></body>
     <input type="text" value="" id="urlInput" placeholder="Enter url">
     <button id="submit" onclick="getActiveCheckboxes()">OPEN</button>
     <div id="checkboxDiv" style="margin-top:20px"></div>
-
-    <script>
-        window.onload = () => {
-            const checkboxDiv = document.getElementById('checkboxDiv')
-            readKit(kit, checkboxDiv)
-        }
-    </script>
 </body>
 </html>

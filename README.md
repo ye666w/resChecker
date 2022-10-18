@@ -8,5 +8,5 @@ This thing will open the same url in different windows with different resolution
 3. Activate the required checkboxes.
 4. Press "OPEN".
 
-The browser window does not need to be full screen to work. Pop-ups must be allowed.
+The browser window does not to be full screen to work. Pop-ups must be allowed.
 You can change existing resolutions or add your own ones in the config.js file.
